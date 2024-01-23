@@ -11,13 +11,12 @@ const createEvent = async(req, res) => {
     newEvent.user = req.uid;
     await newEvent.save()
 
-    res.status(301).json({
+    res.status(201).json({
       ok: true,
       newEvent
     })
     
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       ok: false,
       msg: 'There was an error, contact the administrator'
