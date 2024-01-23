@@ -13,12 +13,16 @@ dbConnection();
 app.use(cors());
 
 // middlewares
-app.use( express.static('public') );
 app.use( express.json() );
+app.use( express.static('public') );
 
 // routes
 app.use( '/api/auth', require('./routes/auth') )
 app.use( '/api/events', require('./routes/events') )
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+})
 
 // port listening
 app.listen( process.env.PORT, () => {
